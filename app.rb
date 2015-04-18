@@ -2,9 +2,14 @@
 
 require 'sinatra'
 require 'sinatra/activerecord'
-require './environments'
+require './class Contact < ActiveRecord::Base
+  self.table_name = 'connect.contact'
+end
 
-
+get "/contacts" do
+  @contacts = Contact.all
+  erb :index
+end
 get "/" do
   erb :home
 end
@@ -28,4 +33,3 @@ get "/create" do
     redirect to(CREATE_URL)
   end
 end
-
